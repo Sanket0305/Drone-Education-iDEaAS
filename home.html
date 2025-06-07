@@ -1,0 +1,2511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iDEaAS - Institute of Drone Education and Aerospace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        :root {
+            --primary: #0056b3;
+            --secondary: #003366;
+            --accent: #00a8e8;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 20px auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Minimal scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 86, 179, 0.5);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 51, 102, 0.7);
+        }
+
+        /* scrollbar-width and scrollbar-color removed for better browser compatibility */
+
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            height: var(--header-height);
+        }
+
+        .header-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark);
+            margin: 5px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 86, 179, 0.7), rgba(0, 51, 102, 0.7)), url('https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: var(--header-height);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            color: var(--white);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btns .btn {
+            padding: 15px 30px;
+            font-size: clamp(14px, 2vw, 16px);
+            flex: 1 1 200px;
+        }
+
+        .hero-btns .btn-outline {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .hero-btns .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        /* Slider Section */
+        .slider-section {
+            background-color: var(--white);
+            padding: 0;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            flex: 1;
+            min-width: 25%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: var(--white);
+            padding: 30px;
+        }
+
+        .slide-content h3 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 10px;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: var(--white);
+            transform: scale(1.2);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--light);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            aspect-ratio: 1/1;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            transition: var(--transition);
+            object-fit: cover;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-features {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Drone Types Section */
+        .drone-types {
+            background-color: var(--white);
+        }
+
+        .types-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .type-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .type-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .type-card:hover .type-img img {
+            transform: scale(1.1);
+        }
+
+        .type-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .type-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .type-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+            flex-grow: 1;
+        }
+
+        .type-content ul li {
+            margin-bottom: 8px;
+        }
+
+        /* How Drones Work Section */
+        .how-drones-work {
+            background-color: var(--light);
+        }
+
+        .work-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+
+        /* Drone Modal Styles */
+        .drone-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .drone-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-body h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-body h3 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .modal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .modal-feature {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-feature h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-body {
+                padding: 30px 20px;
+            }
+
+            .modal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Drone Applications Section */
+        .drone-applications {
+            background-color: var(--light);
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .application-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .application-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+
+        .application-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* Industries Section */
+        .industries {
+            background-color: var(--white);
+        }
+
+        .industries-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .industry-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--light);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .industry-item:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .industry-item:hover h4 {
+            color: var(--white);
+        }
+
+        .industry-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .industry-item:hover .industry-icon {
+            color: var(--white);
+        }
+
+        .industry-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Careers Section */
+        .careers {
+            background-color: var(--light);
+        }
+
+        .career-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .career-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .career-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .career-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .career-card:hover .career-img img {
+            transform: scale(1.1);
+        }
+
+        .career-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .career-content .salary {
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 15px;
+        }
+
+        .career-content ul {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .career-content ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .career-content ul li:before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 12px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--white);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 86, 179, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-nav button:hover {
+            background: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-error {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error .form-error {
+            display: block;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .footer-newsletter input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: inherit;
+        }
+
+        .footer-newsletter .btn {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            border: none;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-img,
+            .about-text {
+                flex: none;
+                width: 100%;
+            }
+
+            .about-img {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .slider-container {
+                height: 400px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .feature-icon {
+                margin-bottom: 10px;
+            }
+
+            .contact-container {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .slider-container {
+                height: 300px;
+            }
+
+            .slide-content {
+                padding: 15px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+
+            .section-title:after {
+                margin: 15px auto;
+            }
+
+            .program-tabs {
+                justify-content: stretch;
+            }
+
+            .tab-btn {
+                flex: 1;
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .zoom-in {
+            animation: zoomIn 1s ease-out forwards;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        @keyframes zoomIn {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Lazy loading for images */
+        img.lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        img.lazy.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+            <button class="lightbox-close">&times;</button>
+            <div class="lightbox-nav">
+                <button id="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button id="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="home.html" class="logo">
+                   <div class="logo-img">
+                        <img src="./Assests/logo-9-removebg.png" alt="IDEA Logo">
+                    </div>
+                    <div class="logo-text">iDE<span>a</span>AS</div>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="courses.html">Training Programs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <button class="hamburger" aria-label="Menu">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Become a Certified Drone Pilot</h1>
+                <p class="fade-in">Join iDEaAS - Institute of Drone Education and Aerospace, an approved Remote
+                    Pilot
+                    Training Organisation (RPTO), and launch your career in the exciting world of drones.</p>
+                <div class="hero-btns">
+                    <a href="courses.html" class="btn slide-up">Explore Programs</a>
+                    <a href="#contact" class="btn btn-outline slide-up">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slider Section -->
+    <!--   <section class="slider-section">
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide">
+                    <img src="./Assests/agricultureDrone.jpg" alt="Drone in agriculture" loading="lazy">
+                    <div class="slide-content">
+                        <h3>Agricultural Drones</h3>
+                        <p>Revolutionizing farming with precision agriculture techniques</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="./Assests/industrialdrone.jpg" alt="Industrial drone" loading="lazy">
+                    <div class="slide-content">
+                        <h3>Industrial Inspection</h3>
+                        <p>Safe and efficient inspection of infrastructure and equipment</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="./Assests/aerial.png" alt="Drone cinematography" loading="lazy">
+                    <div class="slide-content">
+                        <h3>Aerial Cinematography</h3>
+                        <p>Capturing stunning visuals from unique perspectives</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="./Assests/search_rescue.png" alt="Search and rescue drone" loading="lazy">
+                    <div class="slide-content">
+                        <h3>Search & Rescue</h3>
+                        <p>Saving lives with rapid aerial response capabilities</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <div class="slider-dot active" data-slide="0"></div>
+                <div class="slider-dot" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+                <div class="slider-dot" data-slide="3"></div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">About iDEaAS</h2>
+            <div class="about-content">
+                <!-- <div class="about-img zoom-in">
+                    <img src="./Assests/logo-10.png" alt="About iDEaAS" loading="lazy">
+                </div> -->
+                <div class="about-text">
+                    <h2>Your Gateway to the Drone Industry</h2>
+                    <p>The Institute of Drone Education and Aerospace (iDEaAS) is a premier Remote Pilot Training
+                        Organisation (RPTO) approved by the aviation authority. We provide comprehensive drone pilot
+                        training programs designed to equip students with the knowledge and skills needed to excel
+                        in
+                        the rapidly growing drone industry.</p>
+                    <p>Our mission is to bridge the gap between emerging drone technologies and skilled
+                        professionals by
+                        offering industry-relevant training, hands-on experience, and career support. With
+                        state-of-the-art facilities and experienced instructors, we're committed to shaping the next
+                        generation of drone professionals.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Certified Training</h4>
+                                <p>DGCA approved RPTO with certified instructors</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Industry Ready</h4>
+                                <p>Training aligned with current industry needs</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Placement Support</h4>
+                                <p>Dedicated career services for graduates</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Modern Equipment</h4>
+                                <p>Training on latest drone models and software</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drone Types Section -->
+    <section class="section drone-types">
+        <div class="container">
+            <h2 class="section-title">Types of Drones</h2>
+            <div class="types-container">
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="./Assests/multiroar.jpg" alt="Multi-Rotor Drones" loading="lazy">
+                    </div>
+                    <div class="type-content">
+                        <h3>Multi-Rotor Drones</h3>
+                        <p>The most common type of drone, ideal for photography, surveillance, and short-duration
+                            flights.</p>
+                        <ul>
+                            <li>Easy to control and maneuver</li>
+                            <li>Excellent stability for photography</li>
+                            <li>Limited flight time (20-30 minutes)</li>
+                            <li>Commonly used for aerial photography and inspections</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="./Assests/fixed_wings_drone.jpg" alt="Fixed-Wing Drones" loading="lazy">
+                    </div>
+                    <div class="type-content">
+                        <h3>Fixed-Wing Drones</h3>
+                        <p>Designed for long-distance flights and large area coverage, resembling traditional
+                            airplanes.
+                        </p>
+                        <ul>
+                            <li>Long flight time (several hours)</li>
+                            <li>Can cover large areas quickly</li>
+                            <li>Requires runway or launcher for takeoff</li>
+                            <li>Ideal for mapping and surveying</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="./Assests/hybrid_drone.avif" alt="Hybrid Drones" loading="lazy">
+                    </div>
+                    <div class="type-content">
+                        <h3>Hybrid Drones</h3>
+                        <p>Combine features of multi-rotor and fixed-wing drones for versatility in various
+                            applications.</p>
+                        <ul>
+                            <li>Vertical takeoff and landing (VTOL)</li>
+                            <li>Longer flight time than multi-rotors</li>
+                            <li>Can hover when needed</li>
+                            <li>Used for specialized industrial applications</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="./Assests/single_rotor_drone.webp" alt="single_rotor_drone" loading="lazy">
+                    </div>
+                    <div class="type-content">
+                        <h3>Single-Rotor Drones</h3>
+                        <p>Similar to helicopters, these drones have one large rotor and one tail rotor.</p>
+                        <ul>
+                            <li>Longer flight time than multi-rotors</li>
+                            <li>Can carry heavier payloads</li>
+                            <li>More complex mechanics and controls</li>
+                            <li>Used in LIDAR scanning, delivery, and heavy-lift tasks</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="./Assests/nano_macro_drone.jpg" alt="nano_macro_drone" loading="lazy">
+                    </div>
+                    <div class="type-content">
+                        <h3>Nano/Micro Drones</h3>
+                        <p>Ultra-small drones designed for indoor use, entertainment, or close-quarters
+                            surveillance.
+                        </p>
+                        <ul>
+                            <li>Very compact and lightweight</li>
+                            <li>Short flight time (5–10 minutes)</li>
+                            <li>Safe for indoor operation</li>
+                            <li>Used for training, research, and surveillance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="./Assests/Tactical_Military_drones.jpg" alt="Tactical_Military_drones "
+                            loading="lazy">
+                    </div>
+                    <div class="type-content">
+                        <h3>Tactical/Military Drones</h3>
+                        <p>High-performance drones built for defense, surveillance, and combat missions.</p>
+                        <ul>
+                            <li>Long flight durations (hours to days)</li>
+                            <li>High altitude and speed capabilities</li>
+                            <li>Equipped with advanced sensors and communication systems</li>
+                            <li>Used for border patrol, intelligence gathering, and strike missions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Drones Work Section -->
+    <section class="section how-drones-work">
+        <div class="container">
+            <h2 class="section-title">Understanding Drones</h2>
+            <div class="work-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>What Are Drones?</h3>
+                        <p>Drones, also known as Unmanned Aerial Vehicles (UAVs), are aircraft without human pilots
+                            onboard. They can be remotely controlled or fly autonomously through software-controlled
+                            flight plans in their embedded systems. Drones come in various sizes and configurations,
+                            equipped with different payloads for specific applications.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>How Drones Work</h3>
+                        <p>Drones operate through a combination of hardware and software components. The flight
+                            controller acts as the brain, processing inputs from various sensors (gyroscopes,
+                            accelerometers, GPS) to stabilize the aircraft. The remote controller communicates with
+                            the
+                            drone via radio signals, while onboard computers manage autonomous functions.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Key Components</h3>
+                        <p>Essential drone components include the frame, motors, electronic speed controllers
+                            (ESCs),
+                            propellers, flight controller, battery, and payload (camera, sensors, etc.). Advanced
+                            drones
+                            may include GPS modules, obstacle avoidance systems, and first-person view (FPV)
+                            capabilities for real-time video transmission.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Flight Principles</h3>
+                        <p>Multi-rotor drones achieve flight by varying the speed of their motors to change thrust
+                            and
+                            direction. Fixed-wing drones rely on forward motion and aerodynamic lift like
+                            traditional
+                            aircraft. Flight stability is maintained through constant adjustments by the flight
+                            controller based on sensor data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drone Applications Section -->
+    <section class="section drone-applications">
+        <div class="container">
+            <h2 class="section-title">Drone Applications</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3>Faster Road Surveys</h3>
+                    <p>Drones can survey miles of roadway in hours instead of days, capturing high-resolution images
+                        and
+                        3D models for infrastructure planning and maintenance.</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>Accurate Volumetric Measurements</h3>
+                    <p>Precisely calculate stockpile volumes in mining, construction, and agriculture with
+                        centimeter-level accuracy using drone-collected data.</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-wheat-awn"></i>
+                    </div>
+                    <h3>Accurate Yield Estimations</h3>
+                    <p>Multispectral sensors on drones analyze crop health and predict yields with greater accuracy
+                        than
+                        traditional methods, optimizing farm management.</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>Deploy Solar Energy Faster</h3>
+                    <p>Drones accelerate solar farm development with rapid site surveys, thermal inspections of
+                        panels,
+                        and construction progress monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="section industries">
+        <div class="container">
+            <h2 class="section-title">Industries Using Drones</h2>
+            <div class="industries-container">
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h4>Mining</h4>
+                    <p>Stockpile management, site surveys, and safety inspections</p>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h4>Solar</h4>
+                    <p>Panel inspections, site planning, and maintenance</p>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h4>Transport</h4>
+                    <p>Road and rail inspections, traffic monitoring</p>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Utilities</h4>
+                    <p>Power line inspections, pipeline monitoring</p>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h4>Agriculture</h4>
+                    <p>Crop monitoring, spraying, and yield prediction</p>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h4>Media</h4>
+                    <p>Aerial photography and cinematography</p>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <i class="fas fa-helicopter"></i>
+                    </div>
+                    <h4>Emergency Services</h4>
+                    <p>Search and rescue, disaster assessment</p>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4>Real Estate</h4>
+                    <p>Property photography and virtual tours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="section careers">
+        <div class="container">
+            <h2 class="section-title">Drone Pilot Careers</h2>
+            <div class="career-cards">
+                <div class="career-card">
+                    <div class="career-img">
+                        <img src="./Assests/aerial_photography.jpg" alt="Aerial Photographer" loading="lazy">
+                    </div>
+                    <div class="career-content">
+                        <h3>Aerial Photographer</h3>
+                        <div class="salary">₹3-6 Lakhs/year</div>
+                        <p>Capture stunning images and videos from the air for various industries including real
+                            estate,
+                            media, and tourism.</p>
+                        <ul>
+                            <li>Operate camera-equipped drones</li>
+                            <li>Edit and process aerial footage</li>
+                            <li>Work with clients to achieve desired shots</li>
+                            <li>Maintain equipment and follow safety protocols</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="career-card">
+                    <div class="career-img">
+                        <img src="./Assests/survey_drone_pilot.jpg" alt="Survey Drone Pilot" loading="lazy">
+                    </div>
+                    <div class="career-content">
+                        <h3>Survey Drone Pilot</h3>
+                        <div class="salary">₹4-8 Lakhs/year</div>
+                        <p>Conduct aerial surveys for construction, mining, and land development projects using
+                            specialized sensors.</p>
+                        <ul>
+                            <li>Plan and execute survey missions</li>
+                            <li>Process collected data into maps and models</li>
+                            <li>Work with GIS and CAD software</li>
+                            <li>Ensure data accuracy and quality</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="career-card">
+                    <div class="career-img">
+                        <img src="./Assests/industrial_inspector.jpg" alt="Industrial Inspector" loading="lazy">
+                    </div>
+                    <div class="career-content">
+                        <h3>Industrial Inspector</h3>
+                        <div class="salary">₹5-10 Lakhs/year</div>
+                        <p>Use drones to inspect infrastructure like power lines, cell towers, and pipelines safely
+                            and
+                            efficiently.</p>
+                        <ul>
+                            <li>Conduct visual and thermal inspections</li>
+                            <li>Identify and document defects</li>
+                            <li>Generate inspection reports</li>
+                            <li>Follow industry-specific safety standards</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="career-card">
+                    <div class="career-img">
+                        <img src="./Assests/agricultural_drone_operator.jpg" alt="agricultural_drone_operator"
+                            loading="lazy">
+                    </div>
+                    <div class="career-content">
+                        <h3>Agricultural Drone Operator</h3>
+                        <div class="salary">₹3–5 Lakhs/year</div>
+                        <p>Support precision agriculture through crop monitoring, spraying, and data collection.</p>
+                        <ul>
+                            <li>Fly drones over farmland for monitoring crop health</li>
+                            <li>Use NDVI sensors and thermal imaging</li>
+                            <li>Spray pesticides/fertilizers using drone payloads</li>
+                            <li>Collaborate with agronomists and farmers</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="career-card">
+                    <div class="career-img">
+                        <img src="./Assests/drone_delivery_pilot.jpg" alt="drone_delivery_pilot" loading="lazy">
+                    </div>
+                    <div class="career-content">
+                        <h3>Drone Delivery Pilot</h3>
+                        <div class="salary"> ₹4–7 Lakhs/year</div>
+                        <p>Operate drones that transport goods in logistics, healthcare, or e-commerce sectors.</p>
+                        <ul>
+                            <li>Manage autonomous or semi-autonomous delivery flights</li>
+                            <li>Monitor payloads and route planning systems</li>
+                            <li>Troubleshoot navigation or airspace issues</li>
+                            <li>Comply with delivery regulations and protocols</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="career-card">
+                    <div class="career-img">
+                        <img src="./Assests/search_rescue_drone_operator.jpg" alt="search_rescue_drone_operator"
+                            loading="lazy">
+                    </div>
+                    <div class="career-content">
+                        <h3>Search and Rescue Drone Operator</h3>
+                        <div class="salary">₹4-6 Lakhs/year</div>
+                        <p>Support emergency services by locating missing persons or assessing disaster zones.</p>
+                        <ul>
+                            <li>Deploy drones in emergency situations</li>
+                            <li>Use thermal and night vision cameras</li>
+                            <li>Coordinate with police, fire, and rescue teams</li>
+                            <li>Fly in challenging conditions and terrains</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery">
+        <div class="container">
+            <h2 class="section-title">Our Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-item" data-index="0">
+                    <img src="./Assests/dbskill1.jpg" alt="Drone Training" loading="lazy">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="1">
+                    <img src="./Assests/dbskills3.jpg" alt="dbskills" loading="lazy">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="2">
+                    <img src="./Assests/dbskill2.jpg" alt="dbskills" loading="lazy">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <img src="./Assests/dbskills4.jpg" alt="dbskills" loading="lazy">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <!--<div class="gallery-item" data-index="4">
+                    <img src="./Assests/hybrid_drone.avif" alt="dbskills" loading="lazy">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Address</h4>
+                                <p>49/31, F-49/31, Block G, Sector 12, Kharghar, Navi Mumbai, Maharashtra 410210</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>+91 9876543210</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>info@ideaaas.edu.in</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/login.php/" class="social-link" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/i/flow/login" class="social-link" aria-label="Twitter"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/accounts/login/" class="social-link"
+                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/login" class="social-link" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@dbskills-changelives" class="social-link"
+                            aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm" action="submit_contact.php" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                            <div class="form-error">Please enter your name</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="form-error">Please enter a valid email</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}">
+                            <div class="form-error">Please enter a valid phone number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Course Interested In</label>
+                            <select id="course" name="course">
+                                <option value="">Select a course</option>
+                                <option value="Basic Drone Pilot">Basic Drone Pilot</option>
+                                <option value="Aerial Photography">Aerial Photography</option>
+                                <option value="Industrial Inspection">Industrial Inspection</option>
+                                <option value="Professional Drone Pilot">Professional Drone Pilot</option>
+                                <option value="Drone Mapping & Surveying">Drone Mapping & Surveying</option>
+                                <option value="Drone Technology Specialist">Drone Technology Specialist</option>
+                            </select>
+                            <div class="form-error">Please select a course</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                            <div class="form-error">Please enter your message</div>
+                        </div>
+                        <button type="submit" value="submit" name="send" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About iDEaAS</h3>
+                    <p>The Institute of Drone Education and Aerospace (iDEaAS) is a premier Remote Pilot Training
+                        Organisation (RPTO) providing comprehensive drone pilot training programs.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/login.php/" class="social-link" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/i/flow/login" class="social-link" aria-label="Twitter"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/accounts/login/" class="social-link"
+                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/login" class="social-link" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#training">Training Programs</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Training Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="courses.html">Basic Drone Pilot</a></li>
+                        <li><a href="courses.html">Aerial Photography</a></li>
+                        <li><a href="courses.html">Industrial Inspection</a></li>
+                        <li><a href="courses.html">Professional Drone Pilot</a></li>
+                        <li><a href="courses.html">Drone Mapping & Surveying</a></li>
+                        <li><a href="courses.html">Drone Technology Specialist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to get updates on new courses and industry news.</p>
+                    <form class="footer-newsletter" id="newsletterForm">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2023</span> iDEaAS - Institute of Drone Education and Aerospace.
+                    All
+                    Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <!-- JavaScript -->
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hide loader after page load
+            setTimeout(function () {
+                document.querySelector('.loader').classList.add('hidden');
+            }, 500);
+
+            // Mobile Navigation
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-links li');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            });
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Sticky Header
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+
+            // Back to Top Button
+            const backToTop = document.querySelector('.back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('active');
+                } else {
+                    backToTop.classList.remove('active');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Smooth Scrolling for Navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Update active nav link
+                        document.querySelectorAll('.nav-links a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Image Slider
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            const slideCount = slides.length;
+
+            function goToSlide(n) {
+                currentSlide = (n + slideCount) % slideCount;
+                slider.style.transform = `translateX(-${currentSlide * 25}%)`;
+
+                // Update dots
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[currentSlide].classList.add('active');
+            }
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                    goToSlide(slideIndex);
+                });
+            });
+
+            // Auto slide
+            let slideInterval = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 2000);
+
+            // Pause on hover
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            sliderContainer.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+
+            // Form Validation and Submission
+            const contactForm = document.getElementById('contactForm');
+
+            // Validate on input
+            contactForm.querySelectorAll('input, textarea, select').forEach(input => {
+                input.addEventListener('input', function () {
+                    validateField(this);
+                });
+            });
+
+            // Validate on blur
+            contactForm.querySelectorAll('input, textarea, select').forEach(input => {
+                input.addEventListener('blur', function () {
+                    validateField(this);
+                });
+            });
+
+            function validateField(field) {
+                const formGroup = field.closest('.form-group');
+                const errorElement = formGroup.querySelector('.form-error');
+
+                if (field.validity.valid) {
+                    formGroup.classList.remove('error');
+                } else {
+                    formGroup.classList.add('error');
+
+                    if (field.validity.valueMissing) {
+                        errorElement.textContent = 'This field is required';
+                    } else if (field.validity.typeMismatch) {
+                        errorElement.textContent = 'Please enter a valid email';
+                    } else if (field.validity.patternMismatch) {
+                        errorElement.textContent = 'Please enter a valid phone number';
+                    }
+                }
+            }
+
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                let isValid = true;
+
+                // Validate all fields
+                contactForm.querySelectorAll('input, textarea, select').forEach(input => {
+                    validateField(input);
+                    if (!input.validity.valid) {
+                        isValid = false;
+                    }
+                });
+
+                if (isValid) {
+                    // Get form values
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const course = document.getElementById('course').value;
+                    const message = document.getElementById('message').value;
+
+                    // Here you would typically send the data to a server
+                    console.log({ name, email, phone, course, message });
+
+                    // Show success message
+                    alert('Thank you for your message! We will contact you soon.');
+                    contactForm.reset();
+
+                    // Remove error classes
+                    contactForm.querySelectorAll('.form-group').forEach(group => {
+                        group.classList.remove('error');
+                    });
+                }
+            });
+
+            // Newsletter Form
+            const newsletterForm = document.getElementById('newsletterForm');
+            newsletterForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+
+                if (emailInput.validity.valid) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    newsletterForm.reset();
+                } else {
+                    alert('Please enter a valid email address');
+                }
+            });
+
+            // Gallery Lightbox
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            let currentImageIndex = 0;
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    currentImageIndex = parseInt(this.getAttribute('data-index'));
+                    const imgSrc = this.querySelector('img').src;
+                    lightboxImg.src = imgSrc;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            lightboxClose.addEventListener('click', function () {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            lightboxPrev.addEventListener('click', function () {
+                currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+                const imgSrc = galleryItems[currentImageIndex].querySelector('img').src;
+                lightboxImg.src = imgSrc;
+            });
+
+            lightboxNext.addEventListener('click', function () {
+                currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+                const imgSrc = galleryItems[currentImageIndex].querySelector('img').src;
+                lightboxImg.src = imgSrc;
+            });
+
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Keyboard navigation for lightbox
+            document.addEventListener('keydown', function (e) {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        lightbox.classList.remove('active');
+                        document.body.style.overflow = '';
+                    } else if (e.key === 'ArrowLeft') {
+                        lightboxPrev.click();
+                    } else if (e.key === 'ArrowRight') {
+                        lightboxNext.click();
+                    }
+                }
+            });
+
+            // Animation on Scroll
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.fade-in, .slide-up, .zoom-in');
+
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0) scale(1)';
+                    }
+                });
+            }
+
+            // Run once on load
+            animateOnScroll();
+
+            // Run on scroll
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Lazy loading for images
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(img => {
+                    img.dataset.src = img.src;
+                    img.src = '';
+                    img.classList.add('lazy');
+                    imageObserver.observe(img);
+                });
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                lazyImages.forEach(img => {
+                    img.classList.add('loaded');
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
